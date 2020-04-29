@@ -3,5 +3,20 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<p>{{ webcam.id }}</p>
+    <p></p>
+    {% for webcam in webcams %}
+        <p>{{ webcam.id }}</p>
+    {% endfor %}
+    {% for artwork in artworks %}
+    <figure>
+        <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+        <figcaption>
+            <p>{{ artwork.title }}</p>
+            <p>{{ artwork.artist }}</p>
+            <p>{{ artwork.year }}</p>
+        </figcaption>
+    </figure>
+    {% else %}
+    Pas d'image
+    {% endfor %}
 {% endblock %}

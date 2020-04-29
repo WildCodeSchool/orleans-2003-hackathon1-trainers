@@ -13,9 +13,9 @@ class Webcam
     }
 
     /**
-     * @return mixed $webcamId
+     * @return mixed
      */
-    public function getWebcamId($webcamId) :void
+    public function getWebcamId()
     {
         return $this->webcamId;
     }
