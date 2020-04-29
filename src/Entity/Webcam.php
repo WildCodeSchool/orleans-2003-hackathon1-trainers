@@ -5,27 +5,45 @@ namespace App\Entity;
 
 class Webcam
 {
-    private $webcamId;
+    private $id;
+    private $url;
 
-    public function hydrate(array $webcam) :void
+    public function hydrate (array $data) :void
     {
-        $this->setWebcamId($webcam['webcamId']);
+        $this->setId($data['id']);
+        $this->setUrl($data['url']);
     }
 
     /**
      * @return mixed
      */
-    public function getWebcamId()
+    public function getId()
     {
-        return $this->webcamId;
+        return $this->id;
     }
 
     /**
-     * @param mixed $webcamId
+     * @param mixed $id
      */
-    public function setWebcamId($webcamId): void
+    public function setId($id): void
     {
-        $this->webcamId = $webcamId;
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setUrl($url): void
+    {
+        $this->url = $url;
     }
 
 }

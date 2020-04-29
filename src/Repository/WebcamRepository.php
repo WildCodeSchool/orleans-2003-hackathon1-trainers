@@ -20,34 +20,22 @@ class WebcamRepository
         $this->parameterBag = $parameterBag;
     }
 
-    public function findWebcam(int $id) :Webcam
+    public function findWebcamByCountry(string $country) :Webcam
     {
         // $key = $this->parameterBag->get('apiWindyKey');
         // dump($key);
         $client = HttpClient::create();
-        $response = $client->request('GET', self::API_URL .$id . "?key=J7uQJxRHEJzVY9ZZoTavrkX4ZGPnmnpw");
+        $response = $client->request('GET', self::API_URL . 'list/country=' . $country . '/category=beach/limit=1' . "?key=J7uQJxRHEJzVY9ZZoTavrkX4ZGPnmnpw");
 
         $webcamFromApi = $response->toArray();
+        dd($webcamFromApi);
 
         $webcam = new Webcam();
         $webcam->hydrate($webcamFromApi);
 
-        return $webcam;
+        return new Webcam($webcam);
     }
 
-    public function findAllWebcam() :array
-    {
-        $client = HttpClient::create();
-        $response = $client->request('GET', self::API_URL);
 
-        $webcamsFromApi = $response->toArray();
-        foreach ($webcamsFromApi as $webcamFromApi) {
-            $webcam = new Webcam();
-            $webcam->hydrate($webcamFromApi);
-            $webcams[] = $webcam;
-        }
-
-        return $webcams;
-    }
 
 }
