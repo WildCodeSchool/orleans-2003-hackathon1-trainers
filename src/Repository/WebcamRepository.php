@@ -23,7 +23,7 @@ class WebcamRepository
         $this->parameterBag = $parameterBag;
     }
 
-    public function findWebcamByCountry(string $country) : Webcam
+    public function findWebcamByCountry(string $country) :Webcam
     {
         // $key = $this->parameterBag->get('apiWindyKey');
         // dump($key);
@@ -34,8 +34,8 @@ class WebcamRepository
             $apiWebcam = $response->toArray();
             $webcam = new Webcam($apiWebcam);
         }
-
         return $webcam;
+
     }
 
     public function findWebcam(int $id) :Webcam
