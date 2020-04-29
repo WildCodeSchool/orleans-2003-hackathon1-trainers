@@ -3,6 +3,14 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+    <figure>
+        <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
+        <figcaption>
+            <p>{{ webcam.country }}</p>
+        </figcaption>
+    </figure>
+
+
     {% for artwork in artworks %}
     <figure>
         <img src="{{ artwork.image }}" alt="{{ artwork.title }}">

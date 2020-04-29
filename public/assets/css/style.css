@@ -1,0 +1,7 @@
+body {
+    --main-color: #3d17af;
+    --dark: #09021d;
+    --light: #fcf7ff;
+
+    background-color: var(--light);
+}
