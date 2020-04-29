@@ -6,8 +6,8 @@ namespace App\Entity;
 class Webcam
 {
     private $id;
-
     private $country;
+    private $image;
 
     public function __construct(?array $data)
     {
@@ -18,8 +18,9 @@ class Webcam
 
     public function hydrate (array $data) :void
     {
-        $this->setId($data['webcamid']);
-        $this->setCountry($data['country']);
+        $this->setId($data['id']);
+        $this->setImage($data['image']['current']['preview']);
+        $this->setCountry($data['location']['country']);
     }
 
     /**
@@ -52,6 +53,22 @@ class Webcam
     public function setCountry($country): void
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
 
 }
