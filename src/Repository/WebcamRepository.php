@@ -32,8 +32,10 @@ class WebcamRepository
 
         if($response->getStatusCode() === Response::HTTP_OK) {
             $apiWebcams = $response->toArray()['result']['webcams'];
-            $key = array_rand($apiWebcams);
-            $webcam = new Webcam($apiWebcams[$key]);
+            if(!empty($apiWebcams)) {
+                $key = array_rand($apiWebcams);
+                $webcam = new Webcam($apiWebcams[$key]);
+            }
         }
 
         return $webcam ?? null;
