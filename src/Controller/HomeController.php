@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ArtworkRepository;
 use App\Repository\TodoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,25 +10,14 @@ use Symfony\Component\HttpClient\HttpClient;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home/all", name="home_all")
+     * @Route("/home/{country}", name="home")
      */
-    public function list(TodoRepository $todoRepository)
+    public function index(string $country, ArtworkRepository $artworkRepository)
     {
-        $todos = $todoRepository->findAllTodo();
-        return $this->render('home/list.html.twig', [
-            'todos' => $todos,
-        ]);
-    }
+        $artworks = $artworkRepository->findArtworksByCountry($country);
 
-    /**
-     * @Route("/home/{id}", name="home")
-     */
-    public function index(int $id, TodoRepository $todoRepository)
-    {
-        $todo = $todoRepository->findTodo($id);
-        dump($todo);
         return $this->render('home/index.html.twig', [
-            'todo' => $todo,
+            'artworks' => $artworks,
         ]);
     }
 
