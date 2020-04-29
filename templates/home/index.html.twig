@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+    <p>{{ webcam.country }}</p>
     {% for artwork in artworks %}
     <figure>
         <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
@@ -15,4 +16,20 @@
     {% else %}
     Pas d'image
     {% endfor %}
+
+    <figure>
+        <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
+        <figcaption>
+            <p>{{ cocktail.name }}</p>
+            <p>{{ cocktail.glass }}</p>
+            <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+            <ul>
+                {% for ingredient in cocktail.ingredients %}
+                    <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                {% endfor %}
+            </ul>
+            <p>{{ cocktail.instructions }}</p>
+        </figcaption>
+    </figure>
+
 {% endblock %}
