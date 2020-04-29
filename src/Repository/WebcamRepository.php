@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Webcam;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Response;
 
 class WebcamRepository
 {
@@ -27,14 +28,17 @@ class WebcamRepository
         $client = HttpClient::create();
         $response = $client->request('GET', self::API_URL . 'list/country=' . $country . '/category=beach/limit=1' . "?key=J7uQJxRHEJzVY9ZZoTavrkX4ZGPnmnpw");
 
-        $webcamFromApi = $response->toArray();
-        dd($webcamFromApi);
+        if($response->getStatusCode() === Response::HTTP_OK) {
+            $apiWebcam = $response->toArray()['id'];
 
-        $webcam = new Webcam();
-        $webcam->hydrate($webcamFromApi);
+            $webcam = new Webcam();
+            $webcam->hydrate($apiWebcam);
+        }
 
-        return new Webcam($webcam);
+        return new Webcam($apiWebcam);
     }
+
+
 
 
 

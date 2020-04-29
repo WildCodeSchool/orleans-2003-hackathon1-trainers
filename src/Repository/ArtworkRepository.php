@@ -29,7 +29,7 @@ class ArtworkRepository
         );
 
         if($response->getStatusCode() === Response::HTTP_OK) {
-            $apiArtworks = $response->toArray()['objectIDs'];
+                $apiArtworks = $response->toArray()['objectIDs'];
 
             if(!empty($apiArtworks) && count($apiArtworks) >= self::MAX_ARTWORK) {
                 $randowKeys = array_rand($apiArtworks, self::MAX_ARTWORK);
