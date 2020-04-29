@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    {% for todo in todos %}
+        <p>{{ todo.title }}</p>
+        <p>{{ todo.completed ? 'vrai' : 'faux' }}</p>
+    {% endfor %}
+{% endblock %}

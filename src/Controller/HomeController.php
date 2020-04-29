@@ -2,26 +2,35 @@
 
 namespace App\Controller;
 
+use App\Repository\TodoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/home/all", name="home_all")
      */
-    public function index()
+    public function list(TodoRepository $todoRepository)
     {
-        $client = HttpClient::create();
-        $response = $client->request('GET', 'https://jsonplaceholder.typicode.com/todos/1');
-
-        $content = $response->toArray();
-        dump($content);
-// $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
-
-        return $this->render('home/index.html.twig', [
-            'content' => $content,
+        $todos = $todoRepository->findAllTodo();
+        return $this->render('home/list.html.twig', [
+            'todos' => $todos,
         ]);
     }
+
+    /**
+     * @Route("/home/{id}", name="home")
+     */
+    public function index(int $id, TodoRepository $todoRepository)
+    {
+        $todo = $todoRepository->findTodo($id);
+        dump($todo);
+        return $this->render('home/index.html.twig', [
+            'todo' => $todo,
+        ]);
+    }
+
+
 }
 
