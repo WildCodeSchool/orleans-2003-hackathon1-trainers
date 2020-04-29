@@ -14,6 +14,11 @@ class HomeController extends AbstractController
 {
     /**
      * @Route("/home/{country}", name="home")
+     * @param string $country
+     * @param ArtworkRepository $artworkRepository
+     * @param CocktailRepository $cocktailRepository
+     * @param WebcamRepository $webcamRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(string $country, ArtworkRepository $artworkRepository, CocktailRepository $cocktailRepository, WebcamRepository $webcamRepository)
     {

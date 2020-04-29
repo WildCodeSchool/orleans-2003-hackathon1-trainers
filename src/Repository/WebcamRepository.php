@@ -5,6 +5,7 @@ namespace App\Repository;
 
 
 use App\Entity\Artwork;
+use App\Entity\Cocktail;
 use App\Entity\Webcam;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpClient\HttpClient;
@@ -22,7 +23,7 @@ class WebcamRepository
         $this->parameterBag = $parameterBag;
     }
 
-    public function findWebcamByCountry(string $country) :Webcam
+    public function findWebcamByCountry(string $country) : Cocktail
     {
         // $key = $this->parameterBag->get('apiWindyKey');
         // dump($key);
@@ -30,10 +31,20 @@ class WebcamRepository
         $response = $client->request('GET', self::API_URL . 'list/country=' . $country . '/category=beach/limit=1' . "?key=J7uQJxRHEJzVY9ZZoTavrkX4ZGPnmnpw");
 
         if($response->getStatusCode() === Response::HTTP_OK) {
-
+            $apiWebcam = $response->toArray();
+            $webcam = new Cocktail($apiWebcam);
         }
 
-
+        return $webcam;
     }
 
+    public function findWebcam(int $id) :Webcam
+    {
+        $client = HttpClient::create();
+        $response = $client->request('GET', self::API_URL . 'list/webcam=' . $id . "?key=J7uQJxRHEJzVY9ZZoTavrkX4ZGPnmnpw");
+
+        $apiWebcam = $response->toArray();
+
+        return new Webcam($apiWebcam);
+    }
 }

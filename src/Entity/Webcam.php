@@ -9,7 +9,7 @@ class Webcam
 
     public function hydrate (array $data) :void
     {
-        $this->setId($data['id']);
+        $this->setId($data['webcamid']);
     }
 
     /**
