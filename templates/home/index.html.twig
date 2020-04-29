@@ -3,6 +3,16 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-<p>{{ todo.title }}</p>
-<p>{{ todo.completed ? 'vrai' : 'faux' }}</p>
+    {% for artwork in artworks %}
+    <figure>
+        <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+        <figcaption>
+            <p>{{ artwork.title }}</p>
+            <p>{{ artwork.artist }}</p>
+            <p>{{ artwork.year }}</p>
+        </figcaption>
+    </figure>
+    {% else %}
+    Pas d'image
+    {% endfor %}
 {% endblock %}
