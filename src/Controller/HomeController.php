@@ -6,6 +6,8 @@ use App\Repository\ArtworkRepository;
 use App\Repository\CocktailRepository;
 use App\Repository\TodoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Intl\Countries;
+use Symfony\Component\Intl\Intl;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
 class HomeController extends AbstractController
@@ -15,7 +17,9 @@ class HomeController extends AbstractController
      */
     public function index(string $country, ArtworkRepository $artworkRepository, CocktailRepository $cocktailRepository)
     {
-        $artworks = $artworkRepository->findArtworksByCountry($country);
+        $countryName = Countries::getName($country);
+
+        $artworks = $artworkRepository->findArtworksByCountry($countryName);
 
         // TODO recup du cocktail id en fonction du pays, ici ex en dur avec l'id de la margarita
         $cocktailId = 11007;
