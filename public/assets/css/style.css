@@ -5,3 +5,10 @@ body {
 
     background-color: var(--light);
 }
+
+
+.map {
+    height: 300px;
+    max-width:100%;
+    background-color:transparent;
+}
