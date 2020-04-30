@@ -3,51 +3,91 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <figure>
-        <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
-        <figcaption>
-            <p>{{ webcam.country }}</p>
-        </figcaption>
-    </figure>
+    <main class="room">
+        <div class="walls">
+            <div class="front-wall">
+                <figure class="webcam">
+                    <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
+                    <figcaption>
+                        <p>{{ webcam.country }}</p>
+                    </figcaption>
+                </figure>
+
+                {% set artwork = artworks[0] %}
+                <figure class="artwork">
+                    <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                    <figcaption>
+                        <p>{{ artwork.title }}</p>
+                        <p>{{ artwork.artist }}</p>
+                        <p>{{ artwork.year }}</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="side-wall">
+                {% set artwork = artworks[1] %}
+                <figure class="artwork">
+                    <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                    <figcaption>
+                        <p>{{ artwork.title }}</p>
+                        <p>{{ artwork.artist }}</p>
+                        <p>{{ artwork.year }}</p>
+                    </figcaption>
+                </figure>
+
+            </div>
+        </div>
+
+        <div class="floor">
+            <div class="table">
+                {#                <img src="{{ asset('assets/images/table.jpg') }}" alt="table"/>#}
+                <a href="#recipe">
+                    <div class="recipe">
+                        {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
+                        <figcaption>
+                            <p>{{ cocktail.name }}</p>
+                            <p>{{ cocktail.glass }}</p>
+                            <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                            <ul>
+                                {% for ingredient in cocktail.ingredients %}
+                                    <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                                {% endfor %}
+                            </ul>
+                            <p>{{ cocktail.instructions }}</p>
+                        </figcaption>
+                    </div>
+                </a>
 
 
-    {% for artwork in artworks %}
-    <figure>
-        <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
-        <figcaption>
-            <p>{{ artwork.title }}</p>
-            <p>{{ artwork.artist }}</p>
-            <p>{{ artwork.year }}</p>
-        </figcaption>
-    </figure>
-    {% else %}
-    Pas d'image
-    {% endfor %}
+                <div class="glass">
+                </div>
 
-    <figure>
-        <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
-        <figcaption>
-            <p>{{ cocktail.name }}</p>
-            <p>{{ cocktail.glass }}</p>
-            <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
-            <ul>
-                {% for ingredient in cocktail.ingredients %}
-                    <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
-                {% endfor %}
-            </ul>
-            <p>{{ cocktail.instructions }}</p>
-        </figcaption>
-    </figure>
+                <div id="chartdiv" class="map"></div>
+            </div>
+        </div>
 
-    <div id="chartdiv" class="map"></div>
+        <div class="recipe-modal" id="recipe">
+            <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
+            <figcaption>
+                <p>{{ cocktail.name }}</p>
+                <p>{{ cocktail.glass }}</p>
+                <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                <ul>
+                    {% for ingredient in cocktail.ingredients %}
+                        <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                    {% endfor %}
+                </ul>
+                <p>{{ cocktail.instructions }}</p>
+            </figcaption>
+        </div>
 
+    </main>
 {% endblock %}
 
 {% block javascripts %}
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="{{ asset('assets/js/map.js') }}"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="{{ asset('assets/js/map.js') }}"></script>
 {% endblock %}
