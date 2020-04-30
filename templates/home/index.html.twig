@@ -3,48 +3,54 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    {% if webcam is not empty %}
-        <figure>
-            <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
-            <figcaption>
-                <p>{{ webcam.country }}</p>
-            </figcaption>
-        </figure>
-    {% endif %}
+    <main class="room">
+        <div class="wall">
+            {% set artwork = artworks[0] %}
+            <figure class="artwork">
+                <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                <figcaption>
+                    <p>{{ artwork.title }}</p>
+                    <p>{{ artwork.artist }}</p>
+                    <p>{{ artwork.year }}</p>
+                </figcaption>
+            </figure>
+
+            {% set artwork = artworks[1] %}
+            <figure class="artwork">
+                <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                <figcaption>
+                    <p>{{ artwork.title }}</p>
+                    <p>{{ artwork.artist }}</p>
+                    <p>{{ artwork.year }}</p>
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="table">
+            <a href="#recipe" class="recipe">
+                <figure>
+                    {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
+                    <figcaption>
+                        <p>{{ cocktail.name }}</p>
+                        <p>{{ cocktail.glass }}</p>
+                        <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                        <ul>
+                            {% for ingredient in cocktail.ingredients %}
+                                <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p>{{ cocktail.instructions }}</p>
+                    </figcaption>
+                </figure>
+            </a>
 
 
-    {% for artwork in artworks %}
-        <figure>
-            <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
-            <figcaption>
-                <p>{{ artwork.title }}</p>
-                <p>{{ artwork.artist }}</p>
-                <p>{{ artwork.year }}</p>
-            </figcaption>
-        </figure>
-    {% else %}
-        Pas d'image
-    {% endfor %}
+            <img class="glass" src="{{ asset('assets/images/glass.png') }}" alt="glass">
 
-    {% if cocktail is not empty %}
-        <figure>
-            <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
-            <figcaption>
-                <p>{{ cocktail.name }}</p>
-                <p>{{ cocktail.glass }}</p>
-                <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
-                <ul>
-                    {% for ingredient in cocktail.ingredients %}
-                        <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
-                    {% endfor %}
-                </ul>
-                <p>{{ cocktail.instructions }}</p>
-            </figcaption>
-        </figure>
-    {% endif %}
+            <div id="chartdiv" class="map"></div>
+        </div>
 
-    <div id="chartdiv" class="map"></div>
-
+    </main>
 {% endblock %}
 
 {% block javascripts %}

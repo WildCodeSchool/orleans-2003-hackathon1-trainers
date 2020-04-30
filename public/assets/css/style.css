@@ -4,12 +4,88 @@ body {
     --light: #fcf7ff;
 
     background-color: var(--light);
+    margin: 0;
+    --perspective: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.room {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    --width:1080px;
+    --height:719px;
+    width: var(--width);
+    height: var(--height);
+    background-image: url('../images/background.jpeg');
+    background-size: contain;
+    perspective: var(--perspective);
+    position: relative;
+}
+
+.wall {
+    display: flex;
+    perspective: inherit;
+    justify-content: space-around;
 }
 
 
-.map {
+.table {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    transform-style: preserve-3d;
+    perspective: inherit;
+    position: absolute;
+    bottom:75px;
+    /*background-color: rgba(255, 0, 0, 0.34);*/
+    height:200px;
+}
+
+
+.recipe {
+    background-color: var(--light);
+    box-shadow: 1px 1px 8px -4px var(--dark);
+    margin: 16px;
+    padding: 16px;
+    transform: scale(0.3) rotateX(50deg)  ;
+    width: calc(100% / 3);
+}
+
+.glass {
     height: 200px;
-    max-width:100%;
-    background-color:transparent;
+    opacity: 0.7;
+}
+
+.map {
+    --height: 300px;
+    height: var(--height);
+    background-color: transparent;
+}
+
+.artwork {
+    border: 10px solid var(--dark);
+    width: 300px;
+}
+
+.artwork img {
+    width: 100%;
+}
+
+.artwork figcaption {
+    display: none;
+}
+
+.artwork:last-child {
+    transform: rotateY(-30deg);
+    width: 200px;
+    align-self: flex-end;
 }
 

@@ -40,7 +40,7 @@ am4core.ready(function() {
     graticuleSeries.fitExtent = false;
 
 
-    chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.5;
+    chart.backgroundSeries.mapPolygons.template.polygon.fillOpacity = 0.8;
     chart.backgroundSeries.mapPolygons.template.polygon.fill = am4core.color("#eecb8f");
 
 // Create hover state and set alternative fill color
