@@ -8,6 +8,7 @@ class Webcam
     private $id;
     private $country;
     private $image;
+    private $place;
 
     public function __construct(?array $data)
     {
@@ -18,9 +19,27 @@ class Webcam
 
     public function hydrate (array $data) :void
     {
+        dump($data);
         $this->setId($data['id']);
         $this->setImage($data['image']['current']['preview']);
         $this->setCountry($data['location']['country']);
+        $this->setPlace($data['location']['city']);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param mixed $place
+     */
+    public function setPlace($place): void
+    {
+        $this->place = $place;
     }
 
     /**

@@ -15,6 +15,13 @@
                 </figcaption>
             </figure>
 
+            <div class="webcam">
+                {% if webcam is not empty %}
+                    <img src="{{ webcam.image }}" alt="{{ webcam.country }}"/>
+                    <div class="country">{{ webcam.place }} - {{ webcam.country }}</div>
+                {% endif %}
+            </div>
+
             {% set artwork = artworks[1] %}
             <figure class="artwork">
                 <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
@@ -27,23 +34,21 @@
         </div>
 
         <div class="table">
-            <a href="#recipe" class="recipe">
-                <figure>
-                    {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
-                    <figcaption>
-                        <p>{{ cocktail.name }}</p>
-                        <p>{{ cocktail.glass }}</p>
-                        <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+            <div class="recipe">
+                <div class="recipe-paper">
+                    <h2>{{ cocktail.name }}</h2>
+                    <p>{{ cocktail.glass }} - {{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                    <div class="recipe-details">
                         <ul>
                             {% for ingredient in cocktail.ingredients %}
                                 <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
                             {% endfor %}
                         </ul>
-                        <p>{{ cocktail.instructions }}</p>
-                    </figcaption>
-                </figure>
-            </a>
-
+                        <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
+                    </div>
+                    <p>{{ cocktail.instructions }}</p>
+                </div>
+            </div>
 
             <img class="glass" src="{{ asset('assets/images/glass.png') }}" alt="glass">
 
