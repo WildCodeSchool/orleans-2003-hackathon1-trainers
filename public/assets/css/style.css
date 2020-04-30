@@ -18,8 +18,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    --width:1080px;
-    --height:719px;
+    --width: 1080px;
+    --height: 719px;
     width: var(--width);
     height: var(--height);
     background-image: url('../images/background.jpeg');
@@ -34,57 +34,125 @@ body {
     justify-content: space-around;
 }
 
-
-.table {
-    display: flex;
-    align-self: center;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 80%;
-    transform-style: preserve-3d;
-    perspective: inherit;
+.webcam {
+    --width: 300px;
+    --height: 180px;
     position: absolute;
-    bottom:75px;
-    /*background-color: rgba(255, 0, 0, 0.34);*/
-    height:200px;
+    left: 390px;
+    top: 120px;
+    width: var(--width);
+    height: var(--height);
+}
+
+.webcam .country {
+    position:absolute;
+    top:20px;
+    right: 20px;
+    color:white;
+}
+
+.webcam img {
+    width: 100%;
+    object-fit: cover;
 }
 
 
 .recipe {
+    margin: 16px;
+    transform: rotateX(85deg) scale3d(0.4, 0.4, 0.4);
+    transform-origin: left bottom;
+    position: absolute;
+    bottom: 60px;
+    left: 200px;
+    font-size: 1em;
+    color: var(--dark);
+    text-decoration: none;
+    z-index: 3;
+    width: 400px;
+    height:600px;
+}
+
+.recipe:hover {
+    transform: unset;
+}
+.recipe-paper {
     background-color: var(--light);
     box-shadow: 1px 1px 8px -4px var(--dark);
-    margin: 16px;
     padding: 16px;
-    transform: scale(0.3) rotateX(50deg)  ;
-    width: calc(100% / 3);
+    height:100%;
+}
+
+.recipe-details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.recipe-details img {
+    width: 40%;
+    object-fit: contain;
+    max-height: 200px;
 }
 
 .glass {
-    height: 200px;
+    height: 130px;
     opacity: 0.7;
+    position: absolute;
+    bottom: 120px;
+    left: 500px;
 }
 
 .map {
     --height: 300px;
+    width: 200px;
     height: var(--height);
     background-color: transparent;
+    position: absolute;
+    right: 240px;
+    bottom: 60px;
 }
 
 .artwork {
-    border: 10px solid var(--dark);
-    width: 300px;
+    border: 10px inset var(--dark);
+    background-color: var(--dark);
 }
 
 .artwork img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .artwork figcaption {
     display: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark);
+    color:var(--light);
+}
+
+.artwork:first-child {
+    width: 200px;
+    position: absolute;
+    left: 60px;
+    top: 60px;
 }
 
 .artwork:last-child {
-    transform: rotateY(-30deg);
+    transform: rotateY(-30deg) rotateX(15deg);
     width: 200px;
-    align-self: flex-end;
+    position: absolute;
+    right: 30px;
+    top: 200px;
 }
+
+.artwork:hover figcaption {
+    transform:unset;
+    display: block;
+scale(3);
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
