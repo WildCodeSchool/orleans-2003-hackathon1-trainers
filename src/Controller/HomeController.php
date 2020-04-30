@@ -45,6 +45,7 @@ class HomeController extends AbstractController
             'artworks' => $artworks ?? [],
             'cocktail' => $cocktail ?? null,
             'webcam' => $webcam,
+            'country' => $country,
         ]);
     }
 }
