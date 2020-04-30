@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+    <h1>Bienvenue sur AperoTrotter</h1>
     <main class="room">
         <div class="wall">
             {% set artwork = artworks[0] %}
@@ -31,8 +32,8 @@
                     <p>{{ artwork.year }}</p>
                 </figcaption>
             </figure>
+            </img>
         </div>
-
         <div class="table">
             <div class="recipe">
                 <div class="recipe-paper">
@@ -55,6 +56,7 @@
                 {% set glass_image = 'assets/images/glass.png' %}
             {% endif %}
             <img class="glass" src="{{ asset(glass_image) }}" alt="glass">
+            <img class="flag" src="https://www.countryflags.io/{{ country }}/shiny/64.png" alt="{{ country }}"/>
 
             <div id="chartdiv" class="map"></div>
         </div>
