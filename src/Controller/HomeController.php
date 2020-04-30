@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ArtworkRepository;
 use App\Repository\CocktailRepository;
+use App\Repository\CountryCocktailRepository;
 use App\Repository\TodoRepository;
 use App\Repository\WebcamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,21 +23,25 @@ class HomeController extends AbstractController
      * @param WebcamRepository $webcamRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(string $country, ArtworkRepository $artworkRepository, CocktailRepository $cocktailRepository, WebcamRepository $webcamRepository)
-    {
+    public function index(
+        string $country,
+        ArtworkRepository $artworkRepository,
+        CocktailRepository $cocktailRepository,
+        WebcamRepository $webcamRepository,
+        CountryCocktailRepository $countryCocktailRepository) {
 
         $webcam = $webcamRepository->findWebcamByCountry($country);
         $countryName = Countries::getName($country);
         $artworks = $artworkRepository->findArtworksByCountry($countryName);
 
-
-        // TODO recup du cocktail id en fonction du pays, ici ex en dur avec l'id de la margarita
-        $cocktailId = 11007;
-        $cocktail = $cocktailRepository->findCocktail($cocktailId);
+        $cocktailCountry = $countryCocktailRepository->findOneByCountryIso($country);
+        if ($cocktailCountry) {
+            $cocktail = $cocktailRepository->findCocktail($cocktailCountry->getCocktailApiId());
+        }
 
         return $this->render('home/index.html.twig', [
             'artworks' => $artworks ?? [],
-            'cocktail' => $cocktail,
+            'cocktail' => $cocktail ?? null,
             'webcam' => $webcam,
         ]);
     }
