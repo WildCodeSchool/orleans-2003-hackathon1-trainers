@@ -13,7 +13,8 @@ class CountryCocktailFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
         $cocktails = [
-            "MX" => [11007, 11008],
+            "US" => [11008],
+            "MX" => [11007, 13621],
             "CU" => [11000, 11288],
             "FR" => [17201, 11003],
             "IT" => [17215],

@@ -35,9 +35,10 @@ class HomeController extends AbstractController
         $countryName = Countries::getName($country);
         $artworks = $artworkRepository->findArtworksByCountry($countryName);
 
-        $cocktailCountry = $countryCocktailRepository->findOneByCountryIso($country);
-        if ($cocktailCountry) {
-            $cocktail = $cocktailRepository->findCocktail($cocktailCountry->getCocktailApiId());
+        $cocktails = $countryCocktailRepository->findByCountryIso($country);
+        if ($cocktails) {
+            $cocktailRand = $cocktails[array_rand($cocktails)];
+            $cocktail = $cocktailRepository->findCocktail($cocktailRand->getCocktailApiId());
         }
 
         return $this->render('home/index.html.twig', [
