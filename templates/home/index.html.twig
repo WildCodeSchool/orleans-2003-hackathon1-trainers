@@ -50,7 +50,11 @@
                 </div>
             </div>
 
-            <img class="glass" src="{{ asset('assets/images/glass.png') }}" alt="glass">
+            {% set glass_image = 'assets/images/glass_cocktail.png' %}
+            {% if cocktail.glass == 'Cocktail glass' %}
+                {% set glass_image = 'assets/images/glass.png' %}
+            {% endif %}
+            <img class="glass" src="{{ asset(glass_image) }}" alt="glass">
 
             <div id="chartdiv" class="map"></div>
         </div>
