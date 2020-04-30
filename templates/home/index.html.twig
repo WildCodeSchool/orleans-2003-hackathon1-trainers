@@ -3,51 +3,55 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-    <figure>
-        <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
-        <figcaption>
-            <p>{{ webcam.country }}</p>
-        </figcaption>
-    </figure>
+    {% if webcam is not empty %}
+        <figure>
+            <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
+            <figcaption>
+                <p>{{ webcam.country }}</p>
+            </figcaption>
+        </figure>
+    {% endif %}
 
 
     {% for artwork in artworks %}
-    <figure>
-        <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
-        <figcaption>
-            <p>{{ artwork.title }}</p>
-            <p>{{ artwork.artist }}</p>
-            <p>{{ artwork.year }}</p>
-        </figcaption>
-    </figure>
+        <figure>
+            <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+            <figcaption>
+                <p>{{ artwork.title }}</p>
+                <p>{{ artwork.artist }}</p>
+                <p>{{ artwork.year }}</p>
+            </figcaption>
+        </figure>
     {% else %}
-    Pas d'image
+        Pas d'image
     {% endfor %}
 
-    <figure>
-        <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
-        <figcaption>
-            <p>{{ cocktail.name }}</p>
-            <p>{{ cocktail.glass }}</p>
-            <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
-            <ul>
-                {% for ingredient in cocktail.ingredients %}
-                    <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
-                {% endfor %}
-            </ul>
-            <p>{{ cocktail.instructions }}</p>
-        </figcaption>
-    </figure>
+    {% if cocktail is not empty %}
+        <figure>
+            <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
+            <figcaption>
+                <p>{{ cocktail.name }}</p>
+                <p>{{ cocktail.glass }}</p>
+                <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                <ul>
+                    {% for ingredient in cocktail.ingredients %}
+                        <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                    {% endfor %}
+                </ul>
+                <p>{{ cocktail.instructions }}</p>
+            </figcaption>
+        </figure>
+    {% endif %}
 
     <div id="chartdiv" class="map"></div>
 
 {% endblock %}
 
 {% block javascripts %}
-<script src="https://www.amcharts.com/lib/4/core.js"></script>
-<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
-<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-<script src="{{ asset('assets/js/map.js') }}"></script>
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="{{ asset('assets/js/map.js') }}"></script>
 {% endblock %}
