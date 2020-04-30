@@ -15,14 +15,6 @@
                 </figcaption>
             </figure>
 
-            <figure class="webcam">
-                <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
-                <figcaption>
-                    <p>{{ webcam.country }}</p>
-                </figcaption>
-            </figure>
-
-
             {% set artwork = artworks[1] %}
             <figure class="artwork">
                 <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
@@ -35,7 +27,6 @@
         </div>
 
         <div class="table">
-            {#                <img src="{{ asset('assets/images/table.jpg') }}" alt="table"/>#}
             <a href="#recipe" class="recipe">
                 <figure>
                     {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
