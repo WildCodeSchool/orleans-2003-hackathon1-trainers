@@ -6,7 +6,8 @@ body {
     background-color: var(--light);
     margin: 0;
     --perspective: 1000px;
-
+    display: flex;
+    justify-content: center;
 }
 
 * {
@@ -16,24 +17,20 @@ body {
 .room {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--light);
-
-}
-
-.floor {
+    justify-content: space-between;
+    --width:1080px;
+    --height:719px;
+    width: var(--width);
+    height: var(--height);
+    background-image: url('../images/background.jpeg');
+    background-size: contain;
     perspective: var(--perspective);
+    position: relative;
 }
 
-.walls {
+.wall {
     display: flex;
-    perspective: var(--perspective);
-
-}
-
-.front-wall {
-    display: flex;
+    perspective: inherit;
     justify-content: space-around;
 }
 
@@ -42,61 +39,36 @@ body {
     display: flex;
     align-self: center;
     justify-content: space-between;
-    width: 80vw;
-    transform: rotateX(20deg);
-    background-color: #6e4600;
-    background-image: url("https://transparenttextures.com/patterns/dark-wood.png");
+    align-items: flex-start;
+    width: 80%;
     transform-style: preserve-3d;
+    perspective: inherit;
+    position: absolute;
+    bottom:75px;
+    /*background-color: rgba(255, 0, 0, 0.34);*/
+    height:200px;
+}
+
+
+.recipe {
+    background-color: var(--light);
+    box-shadow: 1px 1px 8px -4px var(--dark);
+    margin: 16px;
+    padding: 16px;
+    transform: scale(0.3) rotateX(50deg)  ;
+    width: calc(100% / 3);
+}
+
+.glass {
+    height: 200px;
+    opacity: 0.7;
 }
 
 .map {
     --height: 300px;
     height: var(--height);
-    max-width: 25%;
     background-color: transparent;
-    transform: rotateX(-20deg) translateY(calc(var(--height) / -2));
 }
-
-.glass {
-    width: 250px;
-    --height: 300px;
-    transform: rotateX(-20deg) translateY(calc(var(--height) / -2)) translateZ(100px);
-    background-image: url('../images/glass.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom;
-    opacity: 0.7;
-}
-
-.recipe {
-    background-color: #f5ecd8;
-    width: 25%;
-    margin: 16px;
-    padding: 16px;
-    font-size: 0.5em;
-}
-
-.recipe-modal:target {
-    display: block;
-}
-
-.recipe-modal {
-    --width: 50vw;
-    display: none;
-    position: absolute;
-    left: calc((100vw - var(--width)) / 2);
-    width: 50vw;
-    top: 10%;
-    background-color: #f5ecd8;
-    padding: 16px;
-    z-index: 2;
-}
-
-
-.recipe-modal img {
-    width: 50%;
-}
-
 
 .artwork {
     border: 10px solid var(--dark);
@@ -111,12 +83,8 @@ body {
     display: none;
 }
 
-.side-wall {
-    transform: rotateY(-90deg);
-    background-image: radial-gradient(farthest-corner at 10% 100%, lightgrey 0%, transparent 30%);
-    z-index: 2;
-}
-
-.side-wall .artwork {
-    width: 50%;
+.artwork:last-child {
+    transform: rotateY(-30deg);
+    width: 200px;
+    align-self: flex-end;
 }

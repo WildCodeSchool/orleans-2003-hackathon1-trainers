@@ -4,80 +4,59 @@
 
 {% block body %}
     <main class="room">
-        <div class="walls">
-            <div class="front-wall">
-                <figure class="webcam">
-                    <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
-                    <figcaption>
-                        <p>{{ webcam.country }}</p>
-                    </figcaption>
-                </figure>
+        <div class="wall">
+            {% set artwork = artworks[0] %}
+            <figure class="artwork">
+                <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                <figcaption>
+                    <p>{{ artwork.title }}</p>
+                    <p>{{ artwork.artist }}</p>
+                    <p>{{ artwork.year }}</p>
+                </figcaption>
+            </figure>
 
-                {% set artwork = artworks[0] %}
-                <figure class="artwork">
-                    <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
-                    <figcaption>
-                        <p>{{ artwork.title }}</p>
-                        <p>{{ artwork.artist }}</p>
-                        <p>{{ artwork.year }}</p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="side-wall">
-                {% set artwork = artworks[1] %}
-                <figure class="artwork">
-                    <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
-                    <figcaption>
-                        <p>{{ artwork.title }}</p>
-                        <p>{{ artwork.artist }}</p>
-                        <p>{{ artwork.year }}</p>
-                    </figcaption>
-                </figure>
+            <figure class="webcam">
+                <img src="{{ webcam.image }}" alt="{{ webcam.country }}">
+                <figcaption>
+                    <p>{{ webcam.country }}</p>
+                </figcaption>
+            </figure>
 
-            </div>
+
+            {% set artwork = artworks[1] %}
+            <figure class="artwork">
+                <img src="{{ artwork.image }}" alt="{{ artwork.title }}">
+                <figcaption>
+                    <p>{{ artwork.title }}</p>
+                    <p>{{ artwork.artist }}</p>
+                    <p>{{ artwork.year }}</p>
+                </figcaption>
+            </figure>
         </div>
 
-        <div class="floor">
-            <div class="table">
-                {#                <img src="{{ asset('assets/images/table.jpg') }}" alt="table"/>#}
-                <a href="#recipe">
-                    <div class="recipe">
-                        {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
-                        <figcaption>
-                            <p>{{ cocktail.name }}</p>
-                            <p>{{ cocktail.glass }}</p>
-                            <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
-                            <ul>
-                                {% for ingredient in cocktail.ingredients %}
-                                    <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
-                                {% endfor %}
-                            </ul>
-                            <p>{{ cocktail.instructions }}</p>
-                        </figcaption>
-                    </div>
-                </a>
+        <div class="table">
+            {#                <img src="{{ asset('assets/images/table.jpg') }}" alt="table"/>#}
+            <a href="#recipe" class="recipe">
+                <figure>
+                    {#                    <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">#}
+                    <figcaption>
+                        <p>{{ cocktail.name }}</p>
+                        <p>{{ cocktail.glass }}</p>
+                        <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
+                        <ul>
+                            {% for ingredient in cocktail.ingredients %}
+                                <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p>{{ cocktail.instructions }}</p>
+                    </figcaption>
+                </figure>
+            </a>
 
 
-                <div class="glass">
-                </div>
+            <img class="glass" src="{{ asset('assets/images/glass.png') }}" alt="glass">
 
-                <div id="chartdiv" class="map"></div>
-            </div>
-        </div>
-
-        <div class="recipe-modal" id="recipe">
-            <img src="{{ cocktail.image }}" alt="{{ cocktail.name }}">
-            <figcaption>
-                <p>{{ cocktail.name }}</p>
-                <p>{{ cocktail.glass }}</p>
-                <p>{{ cocktail.alcoholic ? 'alcolisé' : 'non alcolisé' }}</p>
-                <ul>
-                    {% for ingredient in cocktail.ingredients %}
-                        <li>{{ ingredient.name }} {{ ingredient.quantity }}</li>
-                    {% endfor %}
-                </ul>
-                <p>{{ cocktail.instructions }}</p>
-            </figcaption>
+            <div id="chartdiv" class="map"></div>
         </div>
 
     </main>
