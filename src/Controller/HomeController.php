@@ -21,6 +21,7 @@ class HomeController extends AbstractController
      * @param ArtworkRepository $artworkRepository
      * @param CocktailRepository $cocktailRepository
      * @param WebcamRepository $webcamRepository
+     * @param CountryCocktailRepository $countryCocktailRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(
